@@ -1,0 +1,393 @@
+<html>
+<head>
+	<meta name="author" content="Herald Gutierrez"/>
+	<meta name="description" content="My personal website. Provides my portfolio and my resume"/>
+	<meta name="keywords" content="HTML, CSS, JavaScript, jQuery, NodeJS, Jade, ExpressJS"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="description" content="Herald Gutierrez is a developer in Winnipeg, Manitoba"/>
+	<meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+		
+	<title>Herald Gutierrez</title>
+	
+	<link rel="stylesheet" href="css/numbermunchers/main.css"/>	
+	<script src="js/numbermunchers/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+	<div class="main-screen">
+		<h1>Select Game Mode:</h1>
+		<ul>
+			<li class="selected">Multiples</li>
+			<li>Factors</li>
+			<li>Primes</li>
+			<li>Random Game Mode</li>
+		</ul>
+	</div>
+	<div class="loading-screen">
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+		<div class="odd"></div>
+		<div class="even"></div>
+	</div>
+	
+	<div class="header">
+		<div class="level">
+			<span>Level : </span>
+			<span id="level">1</span>
+		</div>
+		<div class="game-mode">
+			<h1 id="mode">Multiples of 2</h1>
+		</div>
+	</div>
+	
+	<div class="game-container">
+		<div id="grid" data-rows='7' data-columns='8'>
+			<div class="row">
+				<div class="tile emptyCorner">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCorner">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCol">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="tile emptyCorner">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyRow">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+				<div class="tile emptyCorner">
+					<div class="tile-inner">
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+					
+		<div id="player-grid">
+			<div id="muncher"></div>
+		</div>
+		
+		<div class="enemy-grid">
+			<div id="enemy1"></div>
+			<div id="enemy2"></div>
+			<div id="enemy3"></div>
+		</div>
+	</div>
+	
+	<div id="extra-info">
+		<div>
+			<span>Score:</span>
+		</div>
+		<div class="score-container">
+			<span id="score">0</span>
+		</div>
+	</div>
+				
+	<script src="js/numbermunchers/helper.js"></script>
+	<script src="js/numbermunchers/multiple.js"></script>
+	<script src="js/numbermunchers/factor.js"></script>
+	<script src="js/numbermunchers/prime.js"></script>
+	<script src="js/numbermunchers/character.js"></script>
+	<script src="js/numbermunchers/gameboard.js"></script>
+	<script src="js/numbermunchers/controller.js"></script>
+	<script src="js/numbermunchers/html.js"></script>
+	<script src="js/numbermunchers/game_manager.js"></script>
+	<script src="js/numbermunchers/application.js"></script>
+	<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-47254279-1', 'heraldgutierrez.com');
+ga('send', 'pageview');
+	</script>
+</body>
+</html>
