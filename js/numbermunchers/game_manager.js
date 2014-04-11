@@ -206,7 +206,7 @@ GameManager.prototype.checkCollision = function(character) {
 
 				// if either characters are the muncher, lose a life
 				if(character.isMuncher || tempChar.isMuncher) {			
-					this.muncherDied();
+					this.muncherDied('Oh no, you were eaten by a Troggle.');
 
 					// this.html.displayElement(tempID, false);
 					// this.removeCharacter(tempChar);
@@ -252,7 +252,7 @@ GameManager.prototype.displayCharacter = function(character) {
 
 // when a user validates an incorrect answer, they lose a life
 // if they run out of lives, its game over
-GameManager.prototype.muncherDied = function() {
+GameManager.prototype.muncherDied = function(string) {
 	this.muncher.died();						// reduce life by 1
 	if(this.muncher.getLivesLeft() < 1)	{		// if no more lives, end game
 		alert('Game Over');
@@ -264,6 +264,9 @@ GameManager.prototype.muncherDied = function() {
 			self.restart();						// show menu
 			window.clearTimeout(timeout);		// clear timeout	
 		}, 1000);
+	} else {
+		var str = '\n' + this.muncher.getLivesLeft() + ' Lives Left!';
+		alert(string + str);
 	}
 };
 
@@ -310,7 +313,8 @@ GameManager.prototype.validateTile = function(position) {
 		this.html.displayScore(this.score);			// display updated score
 		this.levelComplete();						// check if level is complete
 	} else if(valid != null){
-		this.muncherDied();							// muncher lost a life
+		var str = this.board.getErrorMsg(); 
+		this.muncherDied(str);							// muncher lost a life
 	}
 };
 

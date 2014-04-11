@@ -35,6 +35,8 @@ GameBoard.prototype.validateTile = function(x, y) {
 		valid = true;
 	} else if(value != -1 && !isSolution) {
 		valid = false;
+
+		this.errorMsg = 'Sorry, ' + value + ' is not a ' + $('#mode').html();
 	}
 
 	// mark off tile with -1 so we know its been checked already
@@ -78,4 +80,8 @@ GameBoard.prototype.setGameType = function(type) {
 
 GameBoard.prototype.addScore = function() {
 	return (_BASE_SCORE * this.level);
+};
+
+GameBoard.prototype.getErrorMsg = function() {
+	return this.errorMsg;
 };
