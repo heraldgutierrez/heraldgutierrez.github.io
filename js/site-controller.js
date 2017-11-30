@@ -12,37 +12,41 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			id: 'LTC',
 			amount: 8.99953501,
 			spent: 537.27,
-			minProfitAmount: 0,
+			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentValue: 0,
-			currentProfit: 0
+			currentProfit: 0,
+			currentPercentage: null
 		},
 		{
 			id: 'ETH',
 			amount: 0.31983068,
 			spent: 159,
-			minProfitAmount: 0,
+			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentValue: 0,
-			currentProfit: 0
+			currentProfit: 0,
+			currentPercentage: null
+		},
+		{
+			id: 'XRP',
+			amount: 144.855,
+			spent: 50,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null
 		},
 		{
 			id: 'BTC',
 			amount: 0,
 			spent: 0,
-			minProfitAmount: 0,
+			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentValue: 0,
-			currentProfit: 0
-		},
-		{
-			id: 'XRP',
-			amount: 0,
-			spent: 0,
-			minProfitAmount: 0,
-			currentPricePerCoin: 0,
-			currentValue: 0,
-			currentProfit: 0
+			currentProfit: 0,
+			currentPercentage: null
 		}
 	];
 
@@ -52,9 +56,6 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	init();
 
 	function init() {
-		self.ltc.minProfitAmount = self.ltc.spent / self.ltc.amount;
-		self.eth.minProfitAmount = self.eth.spent / self.eth.amount;
-
 	    keepRunning();
 	}
 
@@ -92,12 +93,14 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			return res.json(); 
 		}).then(function(data) { 
 			$scope.$apply(function() {
-				UpdateData(data[0]);
+				var btc = data[0];
+				self.btc = btc.price_cad;
+				UpdateData(btc);
 			});
 		});
 	}
 
-	function loadRipple() {
+	function loadXRP() {
 		$window.fetch('https://api.coinmarketcap.com/v1/ticker/ripple/?convert=CAD')
 		.then(function(res) { 
 			return res.json(); 
@@ -111,9 +114,21 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	function UpdateData(coin) {
 		for(var i = 0; i < self.coins.length; i++) {
 			if (coin.symbol == self.coins[i].id) {
+				self.coins[i].currentPricePerCoinUSD = coin.price_usd;
 				self.coins[i].currentPricePerCoin = coin.price_cad;
 				self.coins[i].currentValue = (self.coins[i].amount * self.coins[i].currentPricePerCoin);
 				self.coins[i].currentProfit = (self.coins[i].currentValue - self.coins[i].spent);
+
+				if (self.coins[i].currentValue > 0) {
+					var percentage = (self.coins[i].currentValue / self.coins[i].spent) - 1;
+					percentage = Math.round(percentage * 10000) / 100;
+
+					if (percentage > 0) {
+						self.coins[i].currentPercentage = '+' + percentage + '%';
+					} else {
+						self.coins[i].currentPercentage = percentage + '%';
+					}
+				}
 
 		    	self.totalValue += self.coins[i].currentValue;
 		    	self.totalProfit += self.coins[i].currentProfit;
@@ -129,7 +144,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	    loadLTC();
 	    loadETH();
 	    loadBTC();
-	    loadRipple();
+	    loadXRP();
 
 		setTimeout(keepRunning, runEveryMin);
 	}

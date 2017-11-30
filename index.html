@@ -33,11 +33,18 @@
 						</tr>
 					<tbody>
 						<tr ng-repeat="coin in Site.coins">
-							<td>{{ coin.id }} <br>
+							<td>
+								{{ coin.id }} <br>
 								<span>{{ coin.amount }}</span>
 							</td>
-							<td>{{ coin.currentPricePerCoin | currency }}</td>
-							<td>{{ coin.currentValue | currency }}</td>
+							<td>
+								{{ coin.currentPricePerCoin | currency }}<br>
+								<span>{{ coin.currentPricePerCoinUSD | currency }} USD</span>
+							</td>
+							<td>
+								{{ coin.currentValue | currency }}<br>
+								<span>{{ coin.currentPercentage }}<span>
+							</td> 
 							<td>{{ coin.currentProfit | currency }}</td>
 						</tr>
 						<tr>
