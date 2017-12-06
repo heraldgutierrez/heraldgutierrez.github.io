@@ -16,7 +16,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentPricePerCoin: 0,
 			currentValue: 0,
 			currentProfit: 0,
-			currentPercentage: null
+			currentPercentage: null,
+			percentageChanges: null
 		},
 		{
 			id: 'ETH',
@@ -26,7 +27,30 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentPricePerCoin: 0,
 			currentValue: 0,
 			currentProfit: 0,
-			currentPercentage: null
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'MIOTA',
+			amount: 10.989,
+			spent: 50,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'XLM',
+			amount: 272.59550396,
+			spent: 65,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
 		},
 		{
 			id: 'XRP',
@@ -36,18 +60,20 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentPricePerCoin: 0,
 			currentValue: 0,
 			currentProfit: 0,
-			currentPercentage: null
-		},
-		{
-			id: 'BTC',
-			amount: 0,
-			spent: 0,
-			currentPricePerCoinUSD: 0,
-			currentPricePerCoin: 0,
-			currentValue: 0,
-			currentProfit: 0,
-			currentPercentage: null
+			currentPercentage: null,
+			percentageChanges: null
 		}
+		// {
+		// 	id: 'BTC',
+		// 	amount: 0,
+		// 	spent: 0,
+		// 	currentPricePerCoinUSD: 0,
+		// 	currentPricePerCoin: 0,
+		// 	currentValue: 0,
+		// 	currentProfit: 0,
+		// 	currentPercentage: null,
+		// 	percentageChanges: null
+		// }
 	];
 
 	var perMins = 1;
@@ -59,53 +85,16 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	    keepRunning();
 	}
 
-	function loadLTC() {
-		$window.fetch('https://api.coinmarketcap.com/v1/ticker/litecoin/?convert=CAD')
+	function loadApiData(coinID, coin) {
+		$window.fetch('https://api.coinmarketcap.com/v1/ticker/' + coinID + '/?convert=CAD')
 		.then(function(res) { 
 			return res.json(); 
 		}).then(function(data) { 
 			$scope.$apply(function() {
-				var ltc = data[0];
-				self.ltc = ltc.price_cad;
+				if (coin) {
+					self[coin] = data[0].price_cad;
+				}
 
-				UpdateData(ltc);
-			});
-		});
-	}
-
-	function loadETH() {
-		$window.fetch('https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=CAD')
-		.then(function(res) { 
-			return res.json(); 
-		}).then(function(data) { 
-			$scope.$apply(function() {
-				var eth = data[0];
-				self.eth = eth.price_cad;
-
-				UpdateData(eth);
-			});
-		});
-	}
-
-	function loadBTC() {
-		$window.fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=CAD')
-		.then(function(res) { 
-			return res.json(); 
-		}).then(function(data) { 
-			$scope.$apply(function() {
-				var btc = data[0];
-				self.btc = btc.price_cad;
-				UpdateData(btc);
-			});
-		});
-	}
-
-	function loadXRP() {
-		$window.fetch('https://api.coinmarketcap.com/v1/ticker/ripple/?convert=CAD')
-		.then(function(res) { 
-			return res.json(); 
-		}).then(function(data) { 
-			$scope.$apply(function() {
 				UpdateData(data[0]);
 			});
 		});
@@ -116,6 +105,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			if (coin.symbol == self.coins[i].id) {
 				self.coins[i].currentPricePerCoinUSD = coin.price_usd;
 				self.coins[i].currentPricePerCoin = coin.price_cad;
+				self.coins[i].percentageChange1Hour = ('(' + coin.percent_change_1h + '%, ' + coin.percent_change_24h + '%, ' + coin.percent_change_7d + '%)');
 				self.coins[i].currentValue = (self.coins[i].amount * self.coins[i].currentPricePerCoin);
 				self.coins[i].currentProfit = (self.coins[i].currentValue - self.coins[i].spent);
 
@@ -141,10 +131,12 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	    self.totalProfit = 0;
 
 		self.time = Date.now();
-	    loadLTC();
-	    loadETH();
-	    loadBTC();
-	    loadXRP();
+		loadApiData('litecoin', 'ltc');
+		loadApiData('ethereum', 'eth');
+		//loadApiData('bitcoin');
+		loadApiData('ripple');
+		loadApiData('iota');
+		loadApiData('stellar');
 
 		setTimeout(keepRunning, runEveryMin);
 	}

@@ -32,14 +32,17 @@
 							<th>Profit</th>
 						</tr>
 					<tbody>
-						<tr ng-repeat="coin in Site.coins">
+						<tr ng-repeat="coin in Site.coins | orderBy : '-currentProfit'">
 							<td>
 								{{ coin.id }} <br>
-								<span>{{ coin.amount }}</span>
+								<span ng-if='coin.amount'>{{ coin.amount }} ({{ coin.spent | currency }})</span>
 							</td>
 							<td>
 								{{ coin.currentPricePerCoin | currency }}<br>
-								<span>{{ coin.currentPricePerCoinUSD | currency }} USD</span>
+								<span ng-if='coin.currentPricePerCoinUSD'>
+									{{ coin.currentPricePerCoinUSD | currency }} USD<br>
+									{{ coin.percentageChange1Hour }}
+								</span>
 							</td>
 							<td>
 								{{ coin.currentValue | currency }}<br>
