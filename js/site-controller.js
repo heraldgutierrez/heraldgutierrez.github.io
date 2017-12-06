@@ -6,6 +6,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	self.eth = 0;
     self.totalValue = 0;
     self.totalProfit = 0;
+    self.displayPercentChange = false;
 
 	self.coins = [
 		{

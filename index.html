@@ -21,7 +21,16 @@
 	<body class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<p>Time {{ Site.time | date : "mediumTime" }}</p>
+				<p>
+					<div class="col-xs-6">
+						Time {{ Site.time | date : "mediumTime" }}
+					</div>
+					
+					<div class="col-xs-6">
+						<input type="checkbox" ng-model="Site.displayPercentChange" /> Display % Changes
+					</div>
+				</p>
+
 
 				<table class="table">
 					<thead>
@@ -41,7 +50,7 @@
 								{{ coin.currentPricePerCoin | currency }}<br>
 								<span ng-if='coin.currentPricePerCoinUSD'>
 									{{ coin.currentPricePerCoinUSD | currency }} USD<br>
-									{{ coin.percentageChange1Hour }}
+									<span ng-show='Site.displayPercentChange'>{{ coin.percentageChange1Hour }}</span>
 								</span>
 							</td>
 							<td>
