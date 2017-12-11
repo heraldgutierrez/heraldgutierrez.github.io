@@ -4,6 +4,14 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	self.time = null;
 	self.ltc = 0;
 	self.eth = 0;
+
+	self.total = {
+		spent: 0,
+		value: 0,
+		profit: 0,
+		profitPercentage: 0
+	};
+
     self.totalValue = 0;
     self.totalProfit = 0;
     self.displayPercentChange = false;
@@ -11,6 +19,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	self.coins = [
 		{
 			id: 'LTC',
+			name: 'Litecoin',
 			amount: 8.99953501,
 			spent: 537.27,
 			currentPricePerCoinUSD: 0,
@@ -22,6 +31,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		},
 		{
 			id: 'ETH',
+			name: 'Ethereum',
 			amount: 0.31983068,
 			spent: 159,
 			currentPricePerCoinUSD: 0,
@@ -33,6 +43,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		},
 		{
 			id: 'MIOTA',
+			name: 'IOTA',
 			amount: 10.989,
 			spent: 50,
 			currentPricePerCoinUSD: 0,
@@ -44,6 +55,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		},
 		{
 			id: 'XLM',
+			name: 'Stellar Lumens',
 			amount: 272.59550396,
 			spent: 65,
 			currentPricePerCoinUSD: 0,
@@ -55,6 +67,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		},
 		{
 			id: 'XRP',
+			name: 'Ripple',
 			amount: 144.855,
 			spent: 50,
 			currentPricePerCoinUSD: 0,
@@ -83,7 +96,11 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	init();
 
 	function init() {
-	    keepRunning();
+		for(var i = 0; i < self.coins.length; i++) {
+			self.total.spent += self.coins[i].spent;
+		}
+
+		keepRunning();
 	}
 
 	function loadApiData(coinID, coin) {
@@ -121,15 +138,24 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 					}
 				}
 
-		    	self.totalValue += self.coins[i].currentValue;
-		    	self.totalProfit += self.coins[i].currentProfit;
+		    	self.total.value += self.coins[i].currentValue;
+		    	self.total.profit += self.coins[i].currentProfit;
+
+				var tempPercentage = (self.total.value - self.total.spent);
+				tempPercentage = Math.round(tempPercentage / self.total.spent * 10000) / 100
+				if (tempPercentage > 0) {
+					tempPercentage = '+' + tempPercentage + '%';
+				} else {
+					tempPercentage = tempPercentage + '%';
+				}
+				self.total.profitPercentage = tempPercentage;
 			}
 		}
 	}
 
 	function keepRunning() {
-	    self.totalValue = 0;
-	    self.totalProfit = 0;
+	    self.total.value = 0;
+	    self.total.profit = 0;
 
 		self.time = Date.now();
 		loadApiData('litecoin', 'ltc');
@@ -138,6 +164,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadApiData('ripple');
 		loadApiData('iota');
 		loadApiData('stellar');
+
 
 		setTimeout(keepRunning, runEveryMin);
 	}
