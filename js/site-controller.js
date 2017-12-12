@@ -24,6 +24,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			spent: 537.27,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
+			currentPricePerCoinCB: 0,
 			currentValue: 0,
 			currentProfit: 0,
 			currentPercentage: null,
@@ -36,6 +37,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			spent: 159,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
+			currentPricePerCoinCB: 0,
 			currentValue: 0,
 			currentProfit: 0,
 			currentPercentage: null,
@@ -48,6 +50,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			spent: 50,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
 			currentValue: 0,
 			currentProfit: 0,
 			currentPercentage: null,
@@ -60,6 +63,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			spent: 65,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
 			currentValue: 0,
 			currentProfit: 0,
 			currentPercentage: null,
@@ -72,22 +76,24 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			spent: 50,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'BTC',
+			name: 'Bitcoin',
+			amount: 0,
+			spent: 0,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
 			currentValue: 0,
 			currentProfit: 0,
 			currentPercentage: null,
 			percentageChanges: null
 		}
-		// {
-		// 	id: 'BTC',
-		// 	amount: 0,
-		// 	spent: 0,
-		// 	currentPricePerCoinUSD: 0,
-		// 	currentPricePerCoin: 0,
-		// 	currentValue: 0,
-		// 	currentProfit: 0,
-		// 	currentPercentage: null,
-		// 	percentageChanges: null
-		// }
 	];
 
 	var perMins = 1;
@@ -103,7 +109,23 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		keepRunning();
 	}
 
-	function loadApiData(coinID, coin) {
+	function loadCoinbaseApiData(coinID) {
+		$window.fetch('https://api.coinbase.com/v2/prices/' + coinID + '-CAD/sell')
+		.then(function(res) { 
+			return res.json(); 
+		}).then(function(data) { 
+			var coin = data.data;
+			console.log()
+
+			for(var i = 0; i < self.coins.length; i++) {
+				if (coin.base == self.coins[i].id) {
+					self.coins[i].currentPricePerCoinCB = coin.amount;
+				}
+			}
+		});
+	}
+
+	function loadCoinMarketcapApiData(coinID, coin) {
 		$window.fetch('https://api.coinmarketcap.com/v1/ticker/' + coinID + '/?convert=CAD')
 		.then(function(res) { 
 			return res.json(); 
@@ -158,13 +180,16 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 	    self.total.profit = 0;
 
 		self.time = Date.now();
-		loadApiData('litecoin', 'ltc');
-		loadApiData('ethereum', 'eth');
-		//loadApiData('bitcoin');
-		loadApiData('ripple');
-		loadApiData('iota');
-		loadApiData('stellar');
+		loadCoinMarketcapApiData('litecoin', 'ltc');
+		loadCoinMarketcapApiData('ethereum', 'eth');
+		loadCoinMarketcapApiData('bitcoin');
+		loadCoinMarketcapApiData('ripple');
+		loadCoinMarketcapApiData('iota');
+		loadCoinMarketcapApiData('stellar');
 
+		loadCoinbaseApiData('LTC');
+		loadCoinbaseApiData('ETH');
+		loadCoinbaseApiData('BTC');
 
 		setTimeout(keepRunning, runEveryMin);
 	}

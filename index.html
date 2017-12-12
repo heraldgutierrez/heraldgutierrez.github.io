@@ -6,7 +6,7 @@
 		<meta http-equiv='content-type' content='text/html; charset=utf-8'>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>LTC ({{ Site.ltc | currency }}), ETH ({{ Site.eth | currency }}</title>
+		<title>Ł {{ Site.ltc | currency }}, Ξ {{ Site.eth | currency }}</title>
 		
 		<link type='text/css' rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 		
@@ -49,6 +49,10 @@
 							</td>
 							<td>
 								{{ coin.currentPricePerCoin | currency }}<br>
+								<span ng-if='coin.currentPricePerCoinCB'>
+									{{ coin.currentPricePerCoinCB | currency }} (CB)<br>
+								</span>
+
 								<span ng-if='coin.currentPricePerCoinUSD'>
 									{{ coin.currentPricePerCoinUSD | currency }} USD<br>
 									<span ng-show='Site.displayPercentChange'>{{ coin.percentageChange1Hour }}</span>
