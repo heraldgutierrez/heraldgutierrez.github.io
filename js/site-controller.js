@@ -81,19 +81,20 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentProfit: 0,
 			currentPercentage: null,
 			percentageChanges: null
-		},
-		{
-			id: 'BTC',
-			name: 'Bitcoin',
-			amount: 0,
-			spent: 0,
-			currentPricePerCoinUSD: 0,
-			currentPricePerCoin: 0,
-			currentValue: 0,
-			currentProfit: 0,
-			currentPercentage: null,
-			percentageChanges: null
 		}
+		//,
+		// {
+		// 	id: 'BTC',
+		// 	name: 'Bitcoin',
+		// 	amount: 0,
+		// 	spent: 0,
+		// 	currentPricePerCoinUSD: 0,
+		// 	currentPricePerCoin: 0,
+		// 	currentValue: 0,
+		// 	currentProfit: 0,
+		// 	currentPercentage: null,
+		// 	percentageChanges: null
+		// }
 	];
 
 	var perMins = 1;
@@ -182,14 +183,14 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		self.time = Date.now();
 		loadCoinMarketcapApiData('litecoin', 'ltc');
 		loadCoinMarketcapApiData('ethereum', 'eth');
-		loadCoinMarketcapApiData('bitcoin');
+		// loadCoinMarketcapApiData('bitcoin');
 		loadCoinMarketcapApiData('ripple');
 		loadCoinMarketcapApiData('iota');
 		loadCoinMarketcapApiData('stellar');
 
-		loadCoinbaseApiData('LTC');
-		loadCoinbaseApiData('ETH');
-		loadCoinbaseApiData('BTC');
+		// loadCoinbaseApiData('LTC');
+		// loadCoinbaseApiData('ETH');
+		// loadCoinbaseApiData('BTC');
 
 		setTimeout(keepRunning, runEveryMin);
 	}
