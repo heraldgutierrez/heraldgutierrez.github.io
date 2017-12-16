@@ -81,6 +81,19 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentProfit: 0,
 			currentPercentage: null,
 			percentageChanges: null
+		},
+		{
+			id: 'SNT',
+			name: 'Status',
+			amount: 242.52,
+			spent: 25,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
 		}
 		//,
 		// {
@@ -187,6 +200,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('ripple');
 		loadCoinMarketcapApiData('iota');
 		loadCoinMarketcapApiData('stellar');
+		loadCoinMarketcapApiData('status');
 
 		// loadCoinbaseApiData('LTC');
 		// loadCoinbaseApiData('ETH');
