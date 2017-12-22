@@ -94,6 +94,32 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentProfit: 0,
 			currentPercentage: null,
 			percentageChanges: null
+		},
+		{
+			id: 'ADA',
+			name: 'Cardano',
+			amount: 90.909,
+			spent: 38,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'XVG',
+			name: 'Verge',
+			amount: 129.87,
+			spent: 12,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
 		}
 		//,
 		// {
@@ -201,6 +227,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('iota');
 		loadCoinMarketcapApiData('stellar');
 		loadCoinMarketcapApiData('status');
+		loadCoinMarketcapApiData('cardano');
+		loadCoinMarketcapApiData('verge');
 
 		// loadCoinbaseApiData('LTC');
 		// loadCoinbaseApiData('ETH');
