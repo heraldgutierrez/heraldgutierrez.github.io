@@ -83,19 +83,6 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			percentageChanges: null
 		},
 		{
-			id: 'ADA',
-			name: 'Cardano',
-			amount: 90,
-			spent: 38,
-			currentPricePerCoinUSD: 0,
-			currentPricePerCoin: 0,
-			currentPricePerCoinCB: null,
-			currentValue: 0,
-			currentProfit: 0,
-			currentPercentage: null,
-			percentageChanges: null
-		},
-		{
 			id: 'FUN',
 			name: 'FunFair',
 			amount: 53,
@@ -111,8 +98,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'REQ',
 			name: 'Request Network',
-			amount: 100,
-			spent: 19.5,
+			amount: 225,
+			spent: 57.5,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -280,7 +267,6 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('ripple');
 		loadCoinMarketcapApiData('iota');
 		loadCoinMarketcapApiData('stellar');
-		loadCoinMarketcapApiData('cardano');
 
 		loadCoinMarketcapApiData('request-network');
 		loadCoinMarketcapApiData('funfair');
