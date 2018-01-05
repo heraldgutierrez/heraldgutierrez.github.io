@@ -46,7 +46,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'MIOTA',
 			name: 'IOTA',
-			amount: 10.989,
+			amount: 10,
 			spent: 50,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
@@ -72,7 +72,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'XRP',
 			name: 'Ripple',
-			amount: 144.855,
+			amount: 144,
 			spent: 50,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
@@ -85,7 +85,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'ADA',
 			name: 'Cardano',
-			amount: 90.909,
+			amount: 90,
 			spent: 38,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
@@ -96,10 +96,10 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			percentageChanges: null
 		},
 		{
-			id: 'TRX',
-			name: 'TRON',
-			amount: 386.613,
-		 	spent: 12,
+			id: 'FUN',
+			name: 'FunFair',
+			amount: 53,
+		 	spent: 1,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -111,8 +111,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'REQ',
 			name: 'Request Network',
-			amount: 38.961,
-			spent: 12.5,
+			amount: 100,
+			spent: 19.5,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -124,7 +124,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'ICX',
 			name: 'ICON',
-			amount: 4.995,
+			amount: 4.99,
 			spent: 12.5,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
@@ -137,8 +137,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'VEN',
 			name: 'VeChain',
-			amount: 5.994,
-			spent: 9.86,
+			amount: 12,
+			spent: 13.86,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: 0,
@@ -283,7 +283,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('cardano');
 
 		loadCoinMarketcapApiData('request-network');
-		loadCoinMarketcapApiData('tron');
+		loadCoinMarketcapApiData('funfair');
 		loadCoinMarketcapApiData('icon');
 		loadCoinMarketcapApiData('vechain');
 
