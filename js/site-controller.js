@@ -46,8 +46,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'MIOTA',
 			name: 'IOTA',
-			amount: 10,
-			spent: 50,
+			amount: 18,
+			spent: 80,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -126,6 +126,19 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			name: 'VeChain',
 			amount: 12,
 			spent: 13.86,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'POE',
+			name: 'Po.et',
+			amount: 288,
+			spent: 30,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: 0,
@@ -272,6 +285,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('funfair');
 		loadCoinMarketcapApiData('icon');
 		loadCoinMarketcapApiData('vechain');
+		loadCoinMarketcapApiData('poet');
 
 		// loadCoinbaseApiData('LTC');
 		// loadCoinbaseApiData('ETH');
