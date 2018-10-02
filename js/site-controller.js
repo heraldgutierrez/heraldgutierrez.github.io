@@ -122,7 +122,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			percentageChanges: null
 		},
 		{
-			id: 'VEN',
+			id: 'VET',
 			name: 'VeChain',
 			amount: 12,
 			spent: 13.86,
