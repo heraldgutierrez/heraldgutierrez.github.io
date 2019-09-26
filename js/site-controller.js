@@ -33,8 +33,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'ETH',
 			name: 'Ethereum',
-			amount: 0.31983068,
-			spent: 159,
+			amount: 0.30000068,
+			spent: 149.14,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: 0,
@@ -46,8 +46,8 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'MIOTA',
 			name: 'IOTA',
-			amount: 10.989,
-			spent: 50,
+			amount: 18,
+			spent: 80,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -72,7 +72,7 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		{
 			id: 'XRP',
 			name: 'Ripple',
-			amount: 144.855,
+			amount: 144,
 			spent: 50,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
@@ -83,10 +83,10 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			percentageChanges: null
 		},
 		{
-			id: 'SNT',
-			name: 'Status',
-			amount: 242.52,
-			spent: 25,
+			id: 'FUN',
+			name: 'FunFair',
+			amount: 53,
+		 	spent: 1,
 			currentPricePerCoinUSD: 0,
 			currentPricePerCoin: 0,
 			currentPricePerCoinCB: null,
@@ -94,7 +94,87 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 			currentProfit: 0,
 			currentPercentage: null,
 			percentageChanges: null
+		},
+		{
+			id: 'REQ',
+			name: 'Request Network',
+			amount: 225,
+			spent: 57.5,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'ICX',
+			name: 'ICON',
+			amount: 4.99,
+			spent: 12.5,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: null,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'VET',
+			name: 'VeChain',
+			amount: 12,
+			spent: 13.86,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
+		},
+		{
+			id: 'POE',
+			name: 'Po.et',
+			amount: 288,
+			spent: 30,
+			currentPricePerCoinUSD: 0,
+			currentPricePerCoin: 0,
+			currentPricePerCoinCB: 0,
+			currentValue: 0,
+			currentProfit: 0,
+			currentPercentage: null,
+			percentageChanges: null
 		}
+
+		// 0.07512197
+		// {
+		// 	id: 'SNT',
+		// 	name: 'Status',
+		// 	amount: 242.52,
+		// 	spent: 25,
+		// 	currentPricePerCoinUSD: 0,
+		// 	currentPricePerCoin: 0,
+		// 	currentPricePerCoinCB: null,
+		// 	currentValue: 0,
+		// 	currentProfit: 0,
+		// 	currentPercentage: null,
+		// 	percentageChanges: null
+		// },
+		// {
+		// 	id: 'XVG',
+		// 	name: 'Verge',
+		// 	amount: 129.87,
+		// 	spent: 12,
+		// 	currentPricePerCoinUSD: 0,
+		// 	currentPricePerCoin: 0,
+		// 	currentPricePerCoinCB: null,
+		// 	currentValue: 0,
+		// 	currentProfit: 0,
+		// 	currentPercentage: null,
+		// 	percentageChanges: null
+		// }
 		//,
 		// {
 		// 	id: 'BTC',
@@ -200,7 +280,12 @@ app.controller('siteController', ['$scope', '$window', function($scope, $window)
 		loadCoinMarketcapApiData('ripple');
 		loadCoinMarketcapApiData('iota');
 		loadCoinMarketcapApiData('stellar');
-		loadCoinMarketcapApiData('status');
+
+		loadCoinMarketcapApiData('request-network');
+		loadCoinMarketcapApiData('funfair');
+		loadCoinMarketcapApiData('icon');
+		loadCoinMarketcapApiData('vechain');
+		loadCoinMarketcapApiData('poet');
 
 		// loadCoinbaseApiData('LTC');
 		// loadCoinbaseApiData('ETH');
